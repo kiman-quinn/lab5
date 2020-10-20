@@ -5,7 +5,7 @@
 
 <script type = "text/javascript" src="https://d3js.org/d3.v6.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-<!-- <link rel="stylesheet" href="style.css" /> -->
+<link rel="stylesheet" href="style.css" />
  
 </head>
 
@@ -20,56 +20,35 @@
 
         <h1>Update Pattern</h1>
 
-        <div class = "chart">
-            <svg class = "chart"></svg>
-            <label for="group-by">Group By</label>
-            
-        </div>
 
-        <select id="group-by">
-            <option value="stores">Stores worldwide</option>
-            <option value="revenue">Revenue in billion U.S. dollars</option>
-        </select>
-        <button class="sort-button">Sort</button>
-
-        <!-- <div class = "drop-down">
+         <div class = "drop-down">
             <label for="group-by">Group By</label>
             <select id="group-by">
                 <option value="stores">Stores worldwide</option>
                 <option value="revenue">Revenue in billion U.S. dollars</option>
             </select>
-        </div> -->
-        
+        </div>
+        <button class="sort-button">Sort</button>
 
+        <div class = "chart">
+            <svg class = "chart"></svg>
+            
+        </div>
 
 
     </div>
 
-
-
-
-    
+ 
 </body>
 
 
 <script type="text/javascript">
 
-    // let type = document.getElementById("group-by")
-    //let type = document.querySelector("#group-by").value;
-    // type.addEventListener('change', function(event){
-    //     console.log(event.target.value);
-    // });
-    
-    // let type = d3.select("#group-by").on("change", (e) => {
-    //     type = e.target.value
-    //     console.log(type);
-    // });
-
-    const margin = {top: 20, right: 20, bottom: 70, left: 250},
-        width = 1000 - margin.left - margin.right,
+    const margin = {top: 20, right: 20, bottom: 20, left: 40},
+        width = 650 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
-    const svg = d3.select("body").append("svg")
+    const svg = d3.select(".chart").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -93,10 +72,9 @@
     // add axis title
     svg.append("text")
         .attr("class", "y-label")
-        .attr("text-anchor", "end")
-        .attr("y", -19)
-        .attr("x", 20)
-        .attr("dy", ".75em");
+        .attr("text-anchor", "start")
+        .attr("y", -5)
+        .attr("x", -margin.left);
 
     let type = "stores"
     let sort = true;
