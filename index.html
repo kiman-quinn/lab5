@@ -84,10 +84,10 @@
     function update(data, type, sort){
         
         if (sort){
-            data.sort((a,b) => a[type]-b[type]);
+            data.sort((a,b) => a[type]-b[type]).reverse();
         }
         else{
-            data.sort((a,b) => a[type]-b[type]).reverse();
+            data.sort((a,b) => a[type]-b[type]);
         }
         
         
@@ -150,17 +150,19 @@
 
    d3.csv('coffee-house-chains.csv', d3.autoType)
     .then(data=>{
-        coffeeChains = data
-        update(coffeeChains, type);
+        coffeeChains = data;
+        update(coffeeChains, type, sort);
 
-        d3.select("#group-by").on("change", (e) => {
-                type = e.target.value
-                update(coffeeChains, type);
-        });
         d3.select(".sort-button").on("click", () =>{
-            sort = !sort
+            sort = !sort;
+
             update(coffeeChains, type, sort);
         });
+        d3.select("#group-by").on("change", (e) => {
+                type = e.target.value;
+                update(coffeeChains, type, sort);
+        });
+        
         
     }); 
 
